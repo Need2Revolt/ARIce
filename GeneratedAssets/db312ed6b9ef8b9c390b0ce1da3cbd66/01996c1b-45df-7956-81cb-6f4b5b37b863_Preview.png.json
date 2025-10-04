@@ -1,0 +1,11 @@
+{
+    "asset": "db312ed6b9ef8b9c390b0ce1da3cbd66",
+    "fileName": "01996c1b-45df-7956-81cb-6f4b5b37b863_Preview.png",
+    "prompt": "table material for augmented reality mesh rendering",
+    "negativePrompt": "",
+    "model": "575ecf67-4425-4939-97b9-5e138b8ee234",
+    "modelName": "Unity Texture2D",
+    "customSeed": 1002301294,
+    "w3CTraceId": "1bf6fae6cf5580bfe4c88d5882d81b3f",
+    "refinementMode": "Generation"
+}
