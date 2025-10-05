@@ -12,6 +12,6 @@ public class PlayerHealth : MonoBehaviour
     public void DecreaseHealth(float damage) {
         health -= damage;
         //Debug.Log("N2R: health = " + health);
-        healthText.text = "Health: " + health;
+        healthText.text = "" + health;
     }
 }

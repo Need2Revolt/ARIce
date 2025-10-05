@@ -11,7 +11,7 @@ public class DamageDealer : MonoBehaviour
     //Detect collisions between the GameObjects with Colliders attached
     void OnCollisionEnter(Collision collision)
     {
-         if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
             //Decrease a variable amount of health and then self distructs
             //Debug.Log("N2R: Decrease health");
@@ -20,5 +20,6 @@ public class DamageDealer : MonoBehaviour
             //so maybe it's not useful...
             Destroy(self, 0);
         }
+        
     }
 }
