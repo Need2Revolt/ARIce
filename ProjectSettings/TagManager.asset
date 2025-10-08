@@ -8,6 +8,7 @@ TagManager:
   - Spawner
   - KillsCount
   - Enemy
+  - Hand
   layers:
   - Default
   - TransparentFX

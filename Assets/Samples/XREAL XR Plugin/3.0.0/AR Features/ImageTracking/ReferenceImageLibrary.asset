@@ -21,9 +21,9 @@ MonoBehaviour:
       m_GuidLow: 5113745538055913386
       m_GuidHigh: 4572330053779619213
     m_SerializedTextureGuid:
-      m_GuidLow: 2017545908619258333
-      m_GuidHigh: 2841173465339902954
-    m_Size: {x: 0.4, y: 0.5681818}
+      m_GuidLow: 994206952673323534
+      m_GuidHigh: 79099872605433832
+    m_Size: {x: 0.4, y: 0.4}
     m_SpecifySize: 1
     m_Name: XREALImage
-    m_Texture: {fileID: 2800000, guid: 814b29ddc3501bffeabbd9aa36e06d27, type: 3}
+    m_Texture: {fileID: 0}

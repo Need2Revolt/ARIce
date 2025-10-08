@@ -37,11 +37,11 @@ public class EnemyInteractor : MonoBehaviour, IPointerClickHandler, IPointerEnte
     public void OnPointerClick(PointerEventData eventData)
     {
         //add enemies that don't die immediately?
-        //Debug.Log("N2R: about to remove enemy");
+        Debug.Log("N2RG: about to remove enemy");
         enemySpawner.removeEnemy(self);
         killsText.text = "" + enemySpawner.getKills();
         Destroy(self, 0);
-        //Debug.Log("N2R: remove enemy complete");
+        Debug.Log("N2RG: remove enemy complete");
     }
 
     //when pointer hover, not sure what to do
