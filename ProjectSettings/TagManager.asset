@@ -9,6 +9,8 @@ TagManager:
   - KillsCount
   - Enemy
   - Hand
+  - LeftHand
+  - RightHand
   layers:
   - Default
   - TransparentFX
