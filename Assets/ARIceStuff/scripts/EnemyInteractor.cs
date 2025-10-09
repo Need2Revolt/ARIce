@@ -8,6 +8,8 @@ using UnityEngine.UI;
 public class EnemyInteractor : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public GameObject self;
+    public ParticleSystem deathEffect1;
+    public ParticleSystem deathEffect2;
 
     private EnemySpawner enemySpawner;
 
@@ -27,9 +29,7 @@ public class EnemyInteractor : MonoBehaviour, IPointerClickHandler, IPointerEnte
     {
         if (collision.gameObject.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>().isSelected)
         {
-            //do i want to add like an explosion effect? it will be in your face most of the times,
-            //so maybe it's not useful...
-            Destroy(self, 0);
+            Die();
         }
     }
 
@@ -38,10 +38,18 @@ public class EnemyInteractor : MonoBehaviour, IPointerClickHandler, IPointerEnte
     {
         //add enemies that don't die immediately?
         Debug.Log("N2RG: about to remove enemy");
+        Die();
+        Debug.Log("N2RG: remove enemy complete");
+    }
+
+    public void Die()
+    {
         enemySpawner.removeEnemy(self);
         killsText.text = "" + enemySpawner.getKills();
-        Destroy(self, 0);
-        Debug.Log("N2RG: remove enemy complete");
+        GetComponent<Renderer>().enabled = false;
+        deathEffect1.Play();
+        deathEffect2.Play();
+        Destroy(self, 2);
     }
 
     //when pointer hover, not sure what to do

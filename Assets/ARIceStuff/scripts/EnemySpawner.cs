@@ -8,8 +8,9 @@ using UnityEngine.XR.ARFoundation;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public float startingDelay = 10;
-    public float delayDecrease = 0.5f;
+    private float startingDelay = 15f;
+    private float delayDecrease = 1f;
+    private float minDelay = 2f;
 
     public int maxEnemies = 10;
 
@@ -53,8 +54,11 @@ public class EnemySpawner : MonoBehaviour
             if (enemiesList.Count < maxEnemies)
             {
                 SpawnEnemy();
-                startingDelay -= delayDecrease;
-                timer = 0;
+                if (startingDelay > minDelay)
+                {
+                    startingDelay -= delayDecrease;
+                    timer = 0;
+                }
             }
         }
     }
@@ -65,9 +69,9 @@ public class EnemySpawner : MonoBehaviour
 
         // Generate a random position around the player
         Vector3 randomPosition = new Vector3(
-            Random.Range(0.4f, 2f) * direction[Random.Range(0, 2)],
-            Random.Range(0, 1),
-            Random.Range(0.4f, 2f) * direction[Random.Range(0, 2)]
+            Random.Range(0.3f, 1.5f) * direction[Random.Range(0, 2)],
+            Random.Range(0.1f, 1f),
+            Random.Range(0.3f, 1.5f) * direction[Random.Range(0, 2)]
         );
 
         Vector3 spawnPosition = player.position + randomPosition;
@@ -77,11 +81,6 @@ public class EnemySpawner : MonoBehaviour
         {
             GameObject newEnemy = Instantiate(enemyPrefabs[enemyIndex], spawnPosition, Quaternion.identity);
             enemiesList.Add(newEnemy);
-        }
-        else
-        {
-            // Position is outside the mesh, do not spawn the enemy
-            kills++;
         }
     }
 

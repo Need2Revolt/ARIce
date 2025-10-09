@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!198 &228498889 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5741878241482643094, guid: 416655f9ab4a043029d767bc09ea0ca7, type: 3}
+  m_PrefabInstance: {fileID: 1346789863}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &257810521
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,6 +221,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 30.074001, y: -105.73701, z: -32.233}
+--- !u!198 &273315851 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3823553230696716396, guid: 416655f9ab4a043029d767bc09ea0ca7, type: 3}
+  m_PrefabInstance: {fileID: 1346789863}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &693740320 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6959399787015347164, guid: 154d20418f16fdf1f9b060ca2c83521a, type: 3}
@@ -243,18 +253,14 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
-    - target: {fileID: 3550162000211465674, guid: 416655f9ab4a043029d767bc09ea0ca7, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5503554844995624533, guid: 416655f9ab4a043029d767bc09ea0ca7, type: 3}
-      propertyPath: m_Mass
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 5503554844995624533, guid: 416655f9ab4a043029d767bc09ea0ca7, type: 3}
-      propertyPath: m_UseGravity
-      value: 0
-      objectReference: {fileID: 0}
+    - target: {fileID: 3889580773186776354, guid: 416655f9ab4a043029d767bc09ea0ca7, type: 3}
+      propertyPath: deathEffect1
+      value: 
+      objectReference: {fileID: 273315851}
+    - target: {fileID: 3889580773186776354, guid: 416655f9ab4a043029d767bc09ea0ca7, type: 3}
+      propertyPath: deathEffect2
+      value: 
+      objectReference: {fileID: 228498889}
     - target: {fileID: 7334622743678176087, guid: 416655f9ab4a043029d767bc09ea0ca7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.067
@@ -295,11 +301,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -403,8 +405,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19bffffcf30beac639d4d697030347e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
-  startingDelay: 3
-  delayDecrease: 0.5
+  startingDelay: 30
+  delayDecrease: 1
+  minDelay: 3
   maxEnemies: 15
   enemyPrefabs:
   - {fileID: 1346789864}
