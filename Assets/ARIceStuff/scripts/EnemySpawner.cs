@@ -16,7 +16,9 @@ public class EnemySpawner : MonoBehaviour
 
     public GameObject[] enemyPrefabs;
 
-    public List<GameObject> enemiesList;
+    private List<GameObject> enemiesList;
+
+    private int enemyCount = 0;
 
     private float timer;
 
@@ -27,7 +29,9 @@ public class EnemySpawner : MonoBehaviour
     public ARMeshManager meshManager; // Reference to the ARMeshManager for accessing the mesh data
     public Transform player; // Reference to the player's transform
 
-    // Start is called before the first frame update
+    private float validationInterval = 10f; // Time interval for validation
+    private float validationTimer = 0f;
+
     void Start()
     {
         timer = 0;
@@ -49,10 +53,13 @@ public class EnemySpawner : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
+        validationTimer += Time.deltaTime;
+
         if (timer > startingDelay)
         {
-            if (enemiesList.Count < maxEnemies)
+            if (enemyCount < maxEnemies)
             {
+                enemyCount++;
                 SpawnEnemy();
                 if (startingDelay > minDelay)
                 {
@@ -60,6 +67,13 @@ public class EnemySpawner : MonoBehaviour
                     timer = 0;
                 }
             }
+        }
+
+        // Periodically validate enemies
+        if (validationTimer > validationInterval)
+        {
+            ValidateEnemies();
+            validationTimer = 0f;
         }
     }
 
@@ -70,7 +84,7 @@ public class EnemySpawner : MonoBehaviour
         // Generate a random position around the player
         Vector3 randomPosition = new Vector3(
             Random.Range(0.3f, 1.5f) * direction[Random.Range(0, 2)],
-            Random.Range(0.1f, 1f),
+            Random.Range(0.1f, 0.5f),
             Random.Range(0.3f, 1.5f) * direction[Random.Range(0, 2)]
         );
 
@@ -96,19 +110,51 @@ public class EnemySpawner : MonoBehaviour
             // Use the bounds of the mesh to check if the position is inside
             if (mesh.bounds.Contains(position - meshFilter.transform.position))
             {
-                Debug.Log("N2R: position is inside mesh");
+                //Debug.Log("N2R: position is inside mesh");
                 return true;
             }
         }
 
-        Debug.Log("N2R: position is outside mesh");
+        //Debug.Log("N2R: position is outside mesh");
         return false;
+    }
+
+    private void ValidateEnemies()
+    {
+        for (int i = enemiesList.Count - 1; i >= 0; i--)
+        {
+            GameObject enemy = enemiesList[i];
+
+            // Check if the enemy is reachable
+            if (!IsEnemyReachable(enemy))
+            {
+                enemiesList.Remove(enemy);
+                enemyCount--;
+                Debug.Log("N2R: removed enemy. Count: " + enemiesList.Count + "   Capacity: " + enemiesList.Capacity );
+            }
+        }
+    }
+
+    private bool IsEnemyReachable(GameObject enemy)
+    {
+        // Perform a line-of-sight check
+        Vector3 direction = (enemy.transform.position - player.position).normalized;
+        if (Physics.Raycast(player.position, direction, out RaycastHit hit))
+        {
+            if (hit.transform.gameObject == enemy)
+            {
+                return true; // Enemy is reachable
+            }
+        }
+
+        return false; // Enemy is unreachable
     }
 
     public void removeEnemy(GameObject newEnemy){
         enemiesList.Remove(newEnemy);
-        Debug.Log("N2R: removed enemy. Count: " + enemiesList.Count + "   Capacity: " + enemiesList.Capacity );
         kills++;
+        enemyCount--;
+        Debug.Log("N2R: killed enemy. Count: " + enemiesList.Count + "   Capacity: " + enemiesList.Capacity );
     }
 
     public int getKills() {

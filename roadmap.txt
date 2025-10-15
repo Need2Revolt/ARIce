@@ -1,0 +1,11 @@
+Known issues:
+Enemy count can exceed the limits
+Enemy shooting at you are inaccurate for some reason
+
+Future features:
+Intro menu
+Starting tutorial
+Credits
+Crawling enemies with NavMesh support (possible at all?)
+Powerup drops
+Level system with increasing difficulty
