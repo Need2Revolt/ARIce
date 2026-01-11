@@ -31,6 +31,8 @@ public class EnemySpawner : MonoBehaviour
 
     private float validationInterval = 10f; // Time interval for validation
     private float validationTimer = 0f;
+    private bool gameStarted = false;
+
 
     void Start()
     {
@@ -52,6 +54,8 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!gameStarted) return;
+        
         timer += Time.deltaTime;
         validationTimer += Time.deltaTime;
 
